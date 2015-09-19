@@ -2,6 +2,14 @@ function splitint(str) {
   return str.split(',').map(function(i) { return i | 0 });
 }
 
+function addClassName(element, className) {
+  element.className += " " + className;
+}
+
+function deleteClassName(element, className) {
+  element.className = element.className.replace(className,'');
+}
+
 function load_data(datastr) {
   var lines = datastr.split('\n');
 
@@ -17,7 +25,7 @@ function load_data(datastr) {
   }
 
   var history = new Array(lines.length - (size[0] + 2));
-  for (var i = size[0] + 2; i < history.length; i++) {
+  for (var i = 0; i < history.length; i++) {
     history[i] = splitint(lines[size[0] + 2 + i]);
   }
 
@@ -29,7 +37,54 @@ function load_data(datastr) {
 }
 
 function draw_maze(data) {
-  console.log(data);
+  root = document.getElementById("visualizer");
+  root.innerHTML = "";
+
+  for (var j = data.size[1] - 1; j >= 0; j--) {
+    row = document.createElement("div");
+    row.className = "maze-row";
+    root.appendChild(row);
+
+    for (var i = 0; i < data.size[0]; i++ ) {
+      var cell = document.createElement("div");
+      cell.id = [i, j].join("");
+      cell.className = "maze-cell maze-cell-0";
+
+      for (var k = 0; k < 4; k++) {
+        if (data.maze[i][j][k] == 1) {
+          addClassName(cell, "maze-cell-wall-" + k);
+        }
+      }
+
+      row.appendChild(cell);
+    }
+
+    clearfix = document.createElement("div");
+    clearfix.className = "clearfix";
+    row.appendChild(clearfix);
+  }
+}
+
+function run_maze(data) {
+  var i = 0;
+  var history = data.history;
+  var timer = setInterval(function() {
+    if (i > 0) {
+      deleteClassName(document.getElementById(history[i - 1].join("")), "agent");
+    }
+    var cell = document.getElementById(history[i].join(""))
+    addClassName(cell, "agent");
+
+    count = cell.className.match(/maze-cell-(\d)/)[1] | 0;
+    deleteClassName(cell, "maze-cell-" + count);
+    addClassName(cell, "maze-cell-" + (count + 1));
+
+    i += 1;
+
+    if (i == history.length) {
+      clearInteraval(timer);
+    }
+  }, 150);
 }
 
 var obj = document.getElementById("datafile");
@@ -38,6 +93,8 @@ obj.addEventListener("change", function(ec) {
   var reader = new FileReader();
   reader.readAsText(files[0]);
   reader.onload = function(el) {
-    draw_maze(load_data(reader.result));
+    data = load_data(reader.result);
+    draw_maze(data);
+    run_maze(data);
   }
 }, false);

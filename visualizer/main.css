@@ -1,0 +1,49 @@
+.maze-row {
+}
+
+.maze-cell {
+  float: left;
+  width: 50px;
+  height: 50px;
+  border: 2px solid #eeeeee;
+  content: " ";
+}
+
+.maze-goal {
+  content: "G";
+  background: #191970;
+}
+
+.maze-cell-0 { background: #ffffff; }
+.maze-cell-1 { background: #f7efaf; }
+.maze-cell-2 { background: #eddaa3; }
+.maze-cell-3 { background: #e4c597; }
+.maze-cell-4 { background: #dbb08b; }
+.maze-cell-5 { background: #d29b7f; }
+.maze-cell-6 { background: #c98673; }
+.maze-cell-7 { background: #bf7168; }
+.maze-cell-8 { background: #b65c5c; }
+.maze-cell-9 { background: #ad4750; }
+
+.maze-cell-wall-0 { border-right:  2px solid #2f2700; }
+.maze-cell-wall-1 { border-left:   2px solid #2f2700; }
+.maze-cell-wall-2 { border-top:    2px solid #2f2700; }
+.maze-cell-wall-3 { border-bottom: 2px solid #2f2700; }
+
+.maze-row:first-child .maze-cell-wall-2 { border-top-width: 4px; }
+.maze-row .maze-cell-wall-1.maze-cell:first-child { border-left-width: 4px; }
+.maze-row .maze-cell-wall-0.maze-cell:last-child { border-right-width: 4px; background: red !important; }
+.maze-row:last-child .maze-cell-wall-3 { border-bottom-width: 4px; }
+
+.agent {
+  background: red;
+}
+
+.clearfix {
+  content: " ";
+  display: block;
+  height: 0;
+  font-size:0;
+  clear: both;
+  visibility: hidden;
+}
