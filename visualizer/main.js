@@ -56,6 +56,11 @@ function draw_maze(data) {
         }
       }
 
+      if (data.maze[i][j][4] == 1) {
+        cell.innerHTML = "G";
+        addClassName(cell, "maze-goal");
+      }
+
       row.appendChild(cell);
     }
 

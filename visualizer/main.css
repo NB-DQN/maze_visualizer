@@ -10,8 +10,10 @@
 }
 
 .maze-goal {
-  content: "G";
-  background: #191970;
+  color: white;
+  font-size: 42px;
+  background: #191970 !important;
+  text-align: center;
 }
 
 .maze-cell-0 { background: #ffffff; }
