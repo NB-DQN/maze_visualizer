@@ -81,8 +81,10 @@ function run_maze(data) {
     addClassName(cell, "agent");
 
     count = cell.className.match(/maze-cell-(\d)/)[1] | 0;
-    deleteClassName(cell, "maze-cell-" + count);
-    addClassName(cell, "maze-cell-" + (count + 1));
+    if (count < 9) {
+      deleteClassName(cell, "maze-cell-" + count);
+      addClassName(cell, "maze-cell-" + (count + 1));
+    }
 
     i += 1;
 
