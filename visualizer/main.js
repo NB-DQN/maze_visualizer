@@ -75,12 +75,12 @@ function draw_maze(data) {
 function run_maze(data) {
   var i = 0;
   var history = data.history;
-  var timer = setInterval(function() {
+  var timer = setInterval( function() {
     if (i > 0) {
       deleteClassName(document.getElementById(history[i - 1].join("")), "agent");
     }
     var cell = document.getElementById(history[i].join(""))
-    addClassName(cell, "agent");
+      addClassName(cell, "agent");
 
     count = cell.className.match(/maze-cell-(\d)/)[1] | 0;
     if (count < 9) {
@@ -88,11 +88,10 @@ function run_maze(data) {
       addClassName(cell, "maze-cell-" + (count + 1));
     }
 
-    i += 1;
-
-    if (i == history.length) {
-      clearInteraval(timer);
+    if (i == history.length - 2) {
+      clearInterval(timer);
     }
+    i += 1;
   }, 150);
 }
 
