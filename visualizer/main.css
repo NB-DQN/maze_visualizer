@@ -32,10 +32,10 @@
 .maze-cell-wall-2 { border-top:    2px solid #2f2700; }
 .maze-cell-wall-3 { border-bottom: 2px solid #2f2700; }
 
-.maze-row:first-child .maze-cell-wall-2 { border-top-width: 4px; }
-.maze-row .maze-cell-wall-1.maze-cell:first-child { border-left-width: 4px; }
-.maze-row .maze-cell-wall-0.maze-cell:last-child { border-right-width: 4px; background: red !important; }
-.maze-row:last-child .maze-cell-wall-3 { border-bottom-width: 4px; }
+.maze-row:first-child .maze-cell { border-top-width:    4px; }
+.maze-row .maze-cell:first-child { border-left-width:   4px; }
+.maze-row .maze-cell:last-child  { border-right-width:  4px; }
+.maze-row:last-child .maze-cell  { border-bottom-width: 4px; }
 
 .agent {
   background: red;

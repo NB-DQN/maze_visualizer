@@ -64,9 +64,11 @@ function draw_maze(data) {
       row.appendChild(cell);
     }
 
-    clearfix = document.createElement("div");
-    clearfix.className = "clearfix";
-    row.appendChild(clearfix);
+    if (j != 0) {
+      clearfix = document.createElement("div");
+      clearfix.className = "clearfix";
+      root.appendChild(clearfix);
+    }
   }
 }
 
