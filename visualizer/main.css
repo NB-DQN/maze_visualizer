@@ -2,6 +2,11 @@
   margin: 100px;
 }
 
+#caption {
+  font-family: 'Helvetica';
+  font-size: 40px;
+}
+
 .maze-row {
 }
 

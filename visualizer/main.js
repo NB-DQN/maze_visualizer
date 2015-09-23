@@ -36,7 +36,7 @@ function load_data(datastr) {
   }
 }
 
-function draw_maze(data) {
+function draw_maze(data, filename) {
   root = document.getElementById("visualizer");
   root.innerHTML = "";
 
@@ -70,6 +70,27 @@ function draw_maze(data) {
       root.appendChild(clearfix);
     }
   }
+
+  cap = document.getElementById("caption");
+  console.log(filename)
+  switch (filename) {
+    case 'depth_first.log':
+      text = 'depth-first binary-tree search';
+      break;
+    case 'q_trained.log':
+      text = 'Q agent';
+      break;
+    case 'q_untrained.log' :
+      text = 'Q agent: not trained maze';
+      break;
+    case 'rand.log':
+      text = 'random walker';
+      break;
+    case 'visual.log':
+      text = 'novelty search with place cell';
+      break;
+  }
+  cap.innerHTML = text;
 }
 
 function run_maze(data) {
@@ -102,7 +123,7 @@ obj.addEventListener("change", function(ec) {
   reader.readAsText(files[0]);
   reader.onload = function(el) {
     data = load_data(reader.result);
-    draw_maze(data);
+    draw_maze(data, ec.target.files[0].name);
     run_maze(data);
   }
 }, false);
